@@ -12,6 +12,7 @@
 
 #include "StdAfx.h"
 #include "DirView.h"
+#include "DuplicateReviewDialog.h"
 #include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
@@ -51,6 +52,9 @@
 #include "MouseHook.h"
 #include "RenameMoveDetection.h"
 #include "FileFilterHelper.h"
+#include "PropertySystem.h"
+#include <map>
+#include <set>
 #include <numeric>
 #include <functional>
 
@@ -230,6 +234,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND_RANGE(ID_FILTERMENU_FIRST, ID_FILTERMENU_LAST, OnFilterMenuCommand)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
+	ON_COMMAND(ID_TOOLS_FIND_DUPLICATES, OnToolsFindDuplicates)
+	ON_UPDATE_COMMAND_UI(ID_TOOLS_FIND_DUPLICATES, OnUpdateToolsFindDuplicates)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_MESSAGE(MSG_GENERATE_FLIE_COMPARE_REPORT, OnGenerateFileCmpReport)
@@ -3102,6 +3108,25 @@ void CDirView::OnCustomizeColumns()
 	OnEditColumns();
 	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
 	GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
+}
+
+void CDirView::OnToolsFindDuplicates()
+{
+	CDuplicateReviewDialog dlg;
+	CDiffContext& ctxt = GetDiffContext();
+	if (ctxt.GetCompareDirs() >= 2)
+	{
+		PathContext paths;
+		ctxt.GetPaths(paths);
+		dlg.SetInitialFolders(paths[0].c_str(), paths[1].c_str());
+	}
+	dlg.DoModal();
+}
+
+void CDirView::OnUpdateToolsFindDuplicates(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPARING &&
+		GetDocument()->HasDiffs());
 }
 
 void CDirView::OnOpenWithUnpacker()

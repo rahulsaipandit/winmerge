@@ -307,6 +307,8 @@ protected:
 	afx_msg void OnUpdateStatusMiddleRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
 	afx_msg void OnCustomizeColumns();
+	afx_msg void OnToolsFindDuplicates();
+	afx_msg void OnUpdateToolsFindDuplicates(CCmdUI* pCmdUI);
 	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();

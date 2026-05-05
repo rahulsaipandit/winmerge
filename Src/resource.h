@@ -881,6 +881,29 @@
 #define ID_TOOLS_GENERATEPATCH          32861
 #define ID_TOOLS_FILTERS                32862
 #define ID_TOOLS_GENERATEREPORT         32863
+#define ID_TOOLS_FIND_DUPLICATES        34194
+#define IDD_DUPLICATE_REVIEW             34195
+#define IDC_REFRESH                      34196
+#define IDC_GROUPS                       34197
+#define IDC_DUPLICATES                   34198
+#define IDC_RECLAIM                      34199
+#define IDC_MASTER_FOLDER                34200
+#define IDC_BROWSE_MASTER                34201
+#define IDC_DUPLICATE_FOLDER             34202
+#define IDC_BROWSE_DUPLICATE             34203
+#define IDC_NAME_COMPARE                 34204
+#define IDC_SIZE_COMPARE                 34205
+#define IDC_TIMESTAMP_COMPARE            34206
+#define IDC_CONTENT_COMPARE              34207
+#define IDC_IGNORE_PATTERN               34208
+#define IDC_ADD_PATTERN                  34209
+#define IDC_IGNORE_LIST                  34210
+#define IDC_REMOVE_PATTERN               34211
+#define IDC_MASTER_TREE                  34212
+#define IDC_DUPLICATE_TREE               34213
+#define IDC_COMPARE                      34214
+#define IDC_DELETE_SELECTED              34215
+#define IDC_THUMBNAIL_SIZE               34216
 #define ID_MERGE_COMPARE_WITH_MOVED_RENAMED 32864
 #define ID_MERGE_COMPARE                32865
 #define ID_MERGE_COMPARE_IN_NEW_WINDOW  32866
@@ -2194,7 +2217,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        290
-#define _APS_NEXT_COMMAND_VALUE         34194
+#define _APS_NEXT_COMMAND_VALUE         34195
 #define _APS_NEXT_CONTROL_VALUE         1696
 #define _APS_NEXT_SYMED_VALUE           134
 #endif
