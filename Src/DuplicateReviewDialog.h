@@ -52,11 +52,9 @@ private:
     CComboBox m_thumbnailSize;
     CImageList m_imageList;
     ULONG_PTR m_gdiplusToken = 0;
+    std::unique_ptr<CDuplicateReviewDialogCache> m_cache;
     CString m_initialMaster;
     CString m_initialDuplicate;
-
-    // Caches scan results so thumbnail-size changes don't trigger a re-scan.
-    std::unique_ptr<CDuplicateReviewDialogCache> m_cache;
 
     void UpdateStatistics(int groups, int duplicates, uint64_t reclaimBytes);
     void RepopulateTrees();

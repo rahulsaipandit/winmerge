@@ -13,12 +13,6 @@
 #include <set>
 #include <vector>
 
-// ---------------------------------------------------------------------------
-// Implementation-only structs — defined at file scope so that
-// CDuplicateReviewDialogCache (forward-declared in the header) is reachable
-// from the class destructor without exposing FileInfo to the header.
-// ---------------------------------------------------------------------------
-
 struct FileInfo
 {
 	String path;
@@ -204,22 +198,20 @@ HTREEITEM InsertTreeItem(CTreeCtrl& tree, HTREEITEM parent, const String& text, 
 	return tree.InsertItem(&tvis);
 }
 
-// Recursive traversal — only leaf items (files) carry a FileInfo pointer.
 void CollectCheckedItems(CTreeCtrl& tree, HTREEITEM item, std::vector<String>& paths)
 {
 	while (item)
 	{
-		HTREEITEM child = tree.GetChildItem(item);
-		if (child)
-		{
-			CollectCheckedItems(tree, child, paths);
-		}
-		else if (tree.GetCheck(item))
+		if (tree.GetCheck(item))
 		{
 			FileInfo* fi = reinterpret_cast<FileInfo*>(tree.GetItemData(item));
 			if (fi)
 				paths.push_back(fi->path);
 		}
+		// Recurse into children
+		HTREEITEM child = tree.GetChildItem(item);
+		if (child)
+			CollectCheckedItems(tree, child, paths);
 		item = tree.GetNextSiblingItem(item);
 	}
 }
@@ -524,7 +516,6 @@ void CDuplicateReviewDialog::OnBnClickedDeleteSelected()
 
 void CDuplicateReviewDialog::OnThumbnailSizeChange()
 {
-	// Scan results are cached; only regenerate thumbnails and rebuild trees.
 	RepopulateTrees();
 }
 
