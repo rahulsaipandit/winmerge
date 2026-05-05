@@ -90,6 +90,9 @@ When scanning directories, the tool applies ignore patterns to exclude irrelevan
 ### File Similarity Assessment
 Similarity checking is criterion-based and incremental. First, both files must exist on disk. If name comparison is enabled, their basenames must match exactly. For size, file sizes in bytes are compared for equality. Timestamp checks allow a one-second difference in modification times to handle minor variations. Content comparison uses binary file comparison when selected, which can be slow for large files but ensures byte-for-byte equivalence. Only if all enabled criteria pass does a file qualify as similar, with the process short-circuiting early if any fail.
 
+### Performance Optimization
+To enhance performance, especially for large directories, the tool enforces that potential duplicates must match in filename and size at minimum. During the initial scan, a memory map is created grouping files by filename and size, storing optional timestamp metadata. Hash computation is then performed only on these pre-filtered groups, significantly reducing the number of files requiring expensive content comparison.
+
 ### Tree Population Mechanism
 Populating the tree views involves recursive directory traversal using the system's walk function. For each directory level, subdirectories are filtered based on ignore patterns before descending. Files and folders are added as tree items, with folders showing no size and files displaying size and modification time in a formatted string. If a comparison path is provided (during folder comparison), files are checked for similarity to their counterparts, automatically ticking checkboxes for matches. This creates a hierarchical representation that mirrors the filesystem, with ignored items completely absent.
 
