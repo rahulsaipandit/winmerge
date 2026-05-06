@@ -128,6 +128,7 @@
 #define IDB_FILE_PRINT                  337
 #define IDB_TOOLS_GENERATEPATCH         338
 #define IDB_TOOLS_GENERATEREPORT        339
+#define IDB_TOOLS_FIND_DUPLICATES       346
 #define IDR_MARGIN_ICONS                340
 #define IDR_MARGIN_CURSOR               341
 #define IDB_EDIT_TOGGLE_BOOKMARK        342
