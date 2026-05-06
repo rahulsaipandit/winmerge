@@ -62,7 +62,7 @@ void ScanFolderRecursive(const String& folder, const std::vector<String>& ignore
 
 		for (const auto& file : contents)
 		{
-			String path = file.path().c_str();
+			String path = ucr::toTString(file.path());
 			String relPath = path.substr(folder.length() + 1);
 
 			if (MatchesIgnorePattern(relPath, ignorePatterns))
@@ -156,10 +156,10 @@ int GetThumbnailSize(int index)
 
 bool IsImageFile(const String& path)
 {
-	String ext = Poco::Path(path).getExtension();
-	ext = strutils::to_lower(ext);
-	return ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "bmp"
-		|| ext == "gif" || ext == "tiff" || ext == "tif" || ext == "webp";
+	String ext = ucr::toTString(Poco::Path(ucr::toUTF8(path)).getExtension());
+	ext = strutils::makelower(ext);
+	return ext == _T("jpg") || ext == _T("jpeg") || ext == _T("png") || ext == _T("bmp")
+		|| ext == _T("gif") || ext == _T("tiff") || ext == _T("tif") || ext == _T("webp");
 }
 
 HBITMAP CreateThumbnail(const String& path, int size)
@@ -606,7 +606,7 @@ void CDuplicateReviewDialog::PerformComparison()
 	std::map<std::tuple<String, uint64_t>, std::vector<FileInfo*>> nameSizeGroups;
 	for (auto& fi : allFiles)
 	{
-		String name = Poco::Path(fi.path).getFileName();
+		String name = ucr::toTString(Poco::Path(ucr::toUTF8(fi.path)).getFileName());
 		nameSizeGroups[{name, fi.size}].push_back(&fi);
 	}
 

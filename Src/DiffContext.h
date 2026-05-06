@@ -113,6 +113,7 @@ public:
 			paths.SetPath(nIndex, m_paths.GetPath(nIndex, true));
 		return paths;
 	}
+	void GetPaths(PathContext& paths) const { paths = m_paths; }
 	//@}
 
 	// change an existing difference

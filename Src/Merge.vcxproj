@@ -1169,6 +1169,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="DuplicateReviewDialog.cpp" />
     <ClCompile Include="dllpstub.cpp" />
     <ClCompile Include="EditorFilepathBar.cpp" />
     <ClCompile Include="EncodingErrorBar.cpp" />
@@ -1600,6 +1601,7 @@
     <ClInclude Include="DirTravel.h" />
     <ClInclude Include="DirView.h" />
     <ClInclude Include="DirViewColItems.h" />
+    <ClInclude Include="DuplicateReviewDialog.h" />
     <ClInclude Include="dllpstub.h" />
     <ClInclude Include="EditorFilepathBar.h" />
     <ClInclude Include="EncodingErrorBar.h" />
