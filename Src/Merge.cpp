@@ -37,6 +37,8 @@
 #include "DirDoc.h"
 #include "OutputDoc.h"
 #include "DirView.h"
+#include "DuplicateDoc.h"
+#include "DuplicateView.h"
 #include "OutputView.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
@@ -563,6 +565,21 @@ CMultiDocTemplate* CMergeApp::GetDirTemplate()
 		AddDocTemplate(m_pDirTemplate);
 	}
 	return m_pDirTemplate;
+}
+
+CMultiDocTemplate* CMergeApp::GetDuplicateTemplate()
+{
+	if (!m_pDuplicateTemplate)
+	{
+		// Duplicate view
+		m_pDuplicateTemplate = new CMultiDocTemplate(
+			IDR_DIRDOCTYPE,
+			RUNTIME_CLASS(CDuplicateDoc),
+			RUNTIME_CLASS(CDirFrame), // custom MDI child frame
+			RUNTIME_CLASS(CDuplicateView));
+		AddDocTemplate(m_pDuplicateTemplate);
+	}
+	return m_pDuplicateTemplate;
 }
 
 CMultiDocTemplate* CMergeApp::GetOutputTemplate()

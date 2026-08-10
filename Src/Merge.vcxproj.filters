@@ -828,6 +828,15 @@
     <ClCompile Include="ClipboardHistoryMenu.cpp">
       <Filter>MFCGui\Menu\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DuplicateReviewDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DuplicateDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DuplicateView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1576,6 +1585,15 @@
     </ClInclude>
     <ClInclude Include="ClipboardHistoryMenu.h">
       <Filter>MFCGui\Menu\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DuplicateReviewDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DuplicateDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DuplicateView.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

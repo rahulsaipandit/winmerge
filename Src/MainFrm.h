@@ -31,6 +31,7 @@
 
 class BCMenu;
 class CDirView;
+class CDuplicateView;
 class COpenDoc;
 struct IDirDoc;
 class CDirDoc;

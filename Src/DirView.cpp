@@ -13,6 +13,7 @@
 #include "StdAfx.h"
 #include "DirView.h"
 #include "DuplicateReviewDialog.h"
+#include "DuplicateView.h"
 #include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
@@ -3112,15 +3113,21 @@ void CDirView::OnCustomizeColumns()
 
 void CDirView::OnToolsFindDuplicates()
 {
-	CDuplicateReviewDialog dlg;
+	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
+	CMultiDocTemplate *pTemplate = pApp->GetDuplicateTemplate();
+	CDocument *pDoc = pTemplate->CreateNewDocument();
+	CFrameWnd *pFrame = pTemplate->CreateNewFrame(pDoc, nullptr);
+	pTemplate->InitialUpdateFrame(pFrame, pDoc);
+
+	CDuplicateView *pView = static_cast<CDuplicateView *>(pFrame->GetActiveView());
+
 	CDiffContext& ctxt = GetDiffContext();
 	if (ctxt.GetCompareDirs() >= 2)
 	{
 		PathContext paths;
 		ctxt.GetPaths(paths);
-		dlg.SetInitialFolders(paths[0].c_str(), paths[1].c_str());
+		pView->SetInitialFolders(CString(paths[0].c_str()), CString(paths[1].c_str()));
 	}
-	dlg.DoModal();
 }
 
 void CDirView::OnUpdateToolsFindDuplicates(CCmdUI* pCmdUI)
